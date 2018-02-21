@@ -11,10 +11,8 @@ import { JSDOM } from 'jsdom';
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import React, { Component, Children } from 'react';
-import createClass from 'create-react-class';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import preact, { Component } from 'preact';
+import PropTypes from 'proptypes';
 import withStyles from '../src/withStyles';
 
 const { window } = new JSDOM('<!doctype html><html><body></body></html>');
@@ -31,7 +29,7 @@ describe('withStyles(...styles)(WrappedComponent)', () => {
       }
 
       render() {
-        return Children.only(this.props.children);
+        return this.props.children;
       }
     }
 
@@ -54,13 +52,13 @@ describe('withStyles(...styles)(WrappedComponent)', () => {
     const insertCss = sinon.spy(() => done);
     const container = document.createElement('div');
 
-    ReactDOM.render(
+    preact.render(
       <Provider insertCss={insertCss}>
         <FooWithStyles />
       </Provider>,
       container,
     );
-    ReactDOM.unmountComponentAtNode(container);
+    preact.render('', container, container.firstElementChild);
     expect(insertCss.calledOnce).to.be.true;
   });
 
@@ -72,23 +70,6 @@ describe('withStyles(...styles)(WrappedComponent)', () => {
         }
       },
     ).displayName).to.equal('WithStyles(Foo)');
-
-    expect(withStyles('')(
-      createClass({
-        displayName: 'Bar',
-        render() {
-          return <div />;
-        },
-      }),
-    ).displayName).to.equal('WithStyles(Bar)');
-
-    expect(withStyles('')(
-      createClass({
-        render() {
-          return <div />;
-        },
-      }),
-    ).displayName).to.be.oneOf(['WithStyles(Component)', 'WithStyles(Constructor)']);
   });
 
   it('Should expose the component with styles as ComposedComponent', () => {

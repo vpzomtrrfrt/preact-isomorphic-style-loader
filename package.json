@@ -1,10 +1,11 @@
 {
-  "name": "isomorphic-style-loader",
+  "name": "preact-isomorphic-style-loader",
   "version": "4.0.0",
   "description": "CSS style loader for Webpack optimized for critical path CSS rendering and isomoprhic web apps",
-  "repository": "kriasoft/isomorphic-style-loader",
-  "author": "Kriasoft <hello@kriasoft.com> (https://www.kriasoft.com)",
+  "repository": "https://github.com/vpzomtrrfrt/preact-isomorphic-style-loader",
+  "author": "Colin Reeder <vpzomtrrfrt@gmail.com>",
   "contributors": [
+    "Kriasoft <hello@kriasoft.com> (https://www.kriasoft.com)",
     "Konstantin Tarkus <hello@tarkus.me> (https://medium.com/@tarkus)",
     "Vladimir Kutepov <frenzzy.man@gmail.com>"
   ],
@@ -19,8 +20,7 @@
     "styles",
     "style-loader",
     "style loader",
-    "react",
-    "reactjs",
+    "preact",
     "isomorphic",
     "universal",
     "critical-css",
@@ -37,7 +37,7 @@
     "babel-runtime": "^6.25.0",
     "hoist-non-react-statics": "^2.2.2",
     "loader-utils": "^1.1.0",
-    "prop-types": "^15.5.10"
+    "proptypes": "^1.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -58,10 +58,12 @@
     "istanbul": "^1.1.0-alpha.1",
     "jsdom": "^11.1.0",
     "mocha": "^3.5.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "preact": "^8.2.7",
     "rimraf": "^2.6.1",
     "sinon": "^3.2.0"
+  },
+  "peerDependencies": {
+    "preact": "8.x"
   },
   "scripts": {
     "lint": "eslint src test",

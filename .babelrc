@@ -4,6 +4,7 @@
     "latest"
   ],
   "plugins": [
-    "transform-runtime"
+    "transform-runtime",
+    ["transform-react-jsx", {pragma: "preact.h"}]
   ]
 }
